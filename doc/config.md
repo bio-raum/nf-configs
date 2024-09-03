@@ -12,7 +12,7 @@ Before we look at the specific options you can put in your site-specific config 
 
 If you are (very) comfortable with git, you are welcome to fork this repository and add your own profile, followed by a pull request against our main branch. You will have to :
 
-- create your config file under `conf/` with a name of your choice (preferably short!)
+- create your config file under `conf/` with a name of your choice (preferably descriptive and short!)
 - add this new config file to the central lookup file [custom.config](../custom.config) with a short name matching the name of the config file
 - Commit your changes to your personal fork
 - Create a pull request from your updated fork to our main branch
@@ -37,7 +37,7 @@ params {
   max_cpus = 40
   max_memory = 250.GB
   max_time = 120.h
-  reference_base = /work/references
+  reference_base = "/path/to/references"
 }
 
 executor {
@@ -77,14 +77,14 @@ This block is used to configure the singularity container engine, as described [
 ```
 docker {
     enabled = true
-    cacheDir = /work/docker_cache
+    cacheDir = /path/to/docker_cache
 }
 ``` 
 or
 ```
 conda {
     enabled = true
-    cacheDir = /work/conda_cache
+    cacheDir = /path/to/conda_cache
 }
 ````
 and so on...

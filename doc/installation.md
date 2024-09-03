@@ -14,7 +14,7 @@ Instead, this guide will provide some hints how best to approach the general set
 
 If you are running on Linux, things are generally "simple" (assuming you are comfortable administrating Linux, that is).
 
-We are testing our pipelines on Alma Linux 9.4, but the basic principle should be transferrable to other systems. 
+We are testing our pipelines on Alma Linux 9.4 and Debian, but the basic principle should be transferrable to other systems. 
 
 ### Software provisioning
 
@@ -29,7 +29,11 @@ sudo dnf -y install apptainer
 
 On Ubuntu, version 22.04 (deb)
 ```bash
-sudo apt-get install apptainer
+sudo apt update
+sudo apt install -y software-properties-common
+sudo add-apt-repository -y ppa:apptainer/ppa
+sudo apt update
+sudo apt install -y apptainer
 ```
 
 If you running different/older/newer releases or otherwise need more information on installing Apptainer, please check the official [documentation](https://apptainer.org/docs/admin/latest/installation.html). 
