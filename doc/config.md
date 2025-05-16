@@ -34,9 +34,6 @@ The amount of data needed is fairly minimal - see the example below for a simple
 
 ```
 params {
-  max_cpus = 40
-  max_memory = 250.GB
-  max_time = 120.h
   reference_base = "/path/to/references"
 }
 
@@ -47,6 +44,7 @@ executor {
 process {
   executor = 'slurm'
   queue = 'all'
+  resourceLimits = [ cpus: 16, memory: 64.GB, time: 72.h ]
 }
 
 singularity {
@@ -56,19 +54,20 @@ singularity {
 
 ```
 
-Note that this config file specifies four instruction blocks - the first three are mandatory, the fourth configures the container engine and related settings, so will depend on your software provider of choice. 
+Note that this config file specifies four instruction blocks - the first three are mandatory/recommended, the fourth configures the container engine and related settings, so will depend on your software provider of choice.
 
 ## params
 
-Here you can specify the limits of your compute enfironment and the base directory for the local pipeline references. The compute limits apply to the configuration of individual nodes (max_cpus, max_memory) and the whole cluster (max_time, i.e. maximum walltime a job can use), respectively. The reference_base option should be user-writable and, if applicable, live on a shared file system so all compute systems can access it. 
+The reference_base option should be user-writable and, if applicable, live on a shared file system so all compute systems can access it. 
 
 ## executor
 
-These are options specific to your resource manager / executor. In our example, we limit the number of concurrent jobs to 50. Additional options are described [here](https://www.nextflow.io/docs/latest/executor.html).
+These are options specific to your resource manager / executor. In our example, we limit the number of concurrent jobs to 50. Additional options are described [here](https://www.nextflow.io/docs/latest/executor.html). This is mostly useful if you want to avoid angering your colleagues with a large number of pending jobs. 
 
 ## process
 
-Options listed here concern mostly the choice of your executor (like Slurm, or PBS). In our example, we specify that we use "slurm" as our resource manager and that the corresponding queue/partition is called "all". Additional options are described [here](https://www.nextflow.io/docs/latest/executor.html). If you only run on a local computer, you can also set `local` as your executor, of course.
+Options listed here concern mostly the choice of your executor (like Slurm, or PBS) and the limits of your hardware. In our example, we specify that we use "slurm" as our resource manager and that the corresponding queue/partition is called "all". Additional options are described [here](https://www.nextflow.io/docs/latest/executor.html). If you only run on a local computer, you can also set `local` as your executor, of course. The hardware specifications apply to the configuration of individual nodes (cpus, memory) and the whole cluster (time, i.e. maximum walltime a job can use), respectively. 
+
 
 ## singularity
 
@@ -89,4 +88,4 @@ conda {
 ````
 and so on...
 
-In any case, we strongly recommend you set the `cacheDir` option to somewhere on your shared file system so nextflow is able to re-use previously installed software packages/containers. 
+In any case, we strongly recommend you set the `cacheDir` option to somewhere on your (shared) file system so nextflow is able to re-use previously installed software packages/containers. 
