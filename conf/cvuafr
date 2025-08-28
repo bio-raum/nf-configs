@@ -1,0 +1,26 @@
+
+// Job parameters to set for this environment
+
+params {
+	max_cpus = 16
+	max_memory = 48.GB
+	reference_base = "$HOME/nextflow_user/nextflow_dbs"
+}
+
+// Resource manager settings
+
+executor {
+  queueSize=5
+}
+
+// Process setting
+
+process {
+  executor = 'local'
+  resourceLimits = [ cpus: 16, memory: 48.GB, time: 72.h ]
+}
+
+docker {
+  enabled = true
+  cacheDir = "$HOME/nextflow_user/nextflow_envs"
+}
