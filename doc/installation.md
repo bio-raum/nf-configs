@@ -22,12 +22,18 @@ On Linux, you have access to basically all supported software provisioning frame
 
 To install Apptainer on your system, the easiest option is:
 
-On a RHEL derivative, version 9 (rpm).
+On a RHEL/Fedora:
 ```bash
 sudo dnf -y install apptainer
 ```
 
-On Ubuntu, version 22.04 (deb)
+On RHEL/EPEL, you may have to install the optional epel repository for this to work:
+
+```bash
+sudo dnf install -y epel-release
+```
+
+On Ubuntu:
 ```bash
 sudo apt update
 sudo apt install -y software-properties-common
@@ -40,17 +46,17 @@ If you running different/older/newer releases or otherwise need more information
 
 ### Installing JRE
 
-Nextflow requires The Java JRE (>= 11, <= 21):
+Nextflow requires the Java JRE:
 
-On a RHEL derivative, version 9
+On a RHEL/Fedora:
 ```bash
 sudo dnf -y install java-21-openjdk 
 sudo alternatives --config java
 ```
 
-On Ubuntu, version 22.04
+On Ubuntu:
 ```bash
-sudo apt install openjdk-11-jdk
+sudo apt -y install openjdk-21-jdk
 sudo update-alternatives --config java
 ```
 
@@ -64,8 +70,8 @@ A simple approach would be:
 ```bash
 mkdir -p $HOME/bin
 cd $HOME/bin
-wget https://github.com/nextflow-io/nextflow/releases/download/v24.04.4/nextflow-24.04.4-all
-mv nextflow-24.04.4-all nextflow
+wget https://github.com/nextflow-io/nextflow/releases/download/v25.04.7/nextflow-25.04.7-dist
+mv nextflow-25.04.7-all nextflow
 chmod +x nextflow
 ```
 And you could also make sure that $HOME/bin is in $PATH by adding the directory to your bash profile:
@@ -86,7 +92,7 @@ Docker (Docker Desktop) has a detailed installation guide [here](https://docs.do
 
 ### Installing JRE
 
-Nextflow requires the Java JRE (>= 11, <= 21). To be able to specifically install that, we first need SDKMAN
+Nextflow requires the Java JRE (>= 21). To be able to specifically install that, we first need SDKMAN
 
 ```bash
 curl -s "https://get.sdkman.io" | bash
@@ -118,8 +124,8 @@ A simple approach would be:
 ```bash
 mkdir -p $HOME/bin
 cd $HOME/bin
-curl -O https://github.com/nextflow-io/nextflow/releases/download/v24.04.4/nextflow-24.04.4-all
-mv nextflow-24.04.4-all nextflow
+curl -O https://github.com/nextflow-io/nextflow/releases/download/v25.04.7/nextflow-25.04.7-dist
+mv nextflow-25.04.7-all nextflow
 chmod +x nextflow
 ```
 And you could also make sure that $HOME/bin is in $PATH by adding the directory to your bash profile:

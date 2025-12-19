@@ -47,9 +47,9 @@ process {
   resourceLimits = [ cpus: 16, memory: 64.GB, time: 72.h ]
 }
 
-singularity {
+apptainer {
   enabled = true
-  cacheDir = "/work/singularity_cache"
+  cacheDir = "/work/apptainer_cache"
 }
 
 ```
@@ -69,14 +69,14 @@ These are options specific to your resource manager / executor. In our example, 
 Options listed here concern mostly the choice of your executor (like Slurm, or PBS) and the limits of your hardware. In our example, we specify that we use "slurm" as our resource manager and that the corresponding queue/partition is called "all". Additional options are described [here](https://www.nextflow.io/docs/latest/executor.html). If you only run on a local computer, you can also set `local` as your executor, of course. The hardware specifications apply to the configuration of individual nodes (cpus, memory) and the whole cluster (time, i.e. maximum walltime a job can use), respectively. 
 
 
-## singularity
+## apptainer
 
-This block is used to configure the singularity container engine, as described [here](https://www.nextflow.io/docs/latest/config.html). This name of the appropriate scope depends, of course, on your choice of software provisioning framework. Other commonly used options would be:
+This block is used to configure the apptainer container engine, as described [here](https://www.nextflow.io/docs/latest/config.html). This name of the appropriate scope depends, of course, on your choice of software provisioning framework. Other commonly used options would be:
 
 ```
-docker {
+singularity {
     enabled = true
-    cacheDir = /path/to/docker_cache
+    cacheDir = /path/to/singularity_cache
 }
 ``` 
 or
